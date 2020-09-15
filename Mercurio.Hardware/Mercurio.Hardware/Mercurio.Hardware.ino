@@ -33,7 +33,7 @@ void setup()
 
 	firstFanButton.initialize(turnFirstFanOn, turnFirstFanOff);
 	secondFanButton.initialize(turnSecondFanOn, turnSecondFanOff);
-	solenoidButton.initialize(activateSolenoidKicker, doNothing);
+	solenoidButton.initialize(activateSolenoidKicker);
 
 	firstFan.initialize();
 	secondFan.initialize();
@@ -53,11 +53,6 @@ void loop()
 void activateSolenoidKicker()
 {
 	solenoidKicker.kick();
-}
-
-void doNothing()
-{
-
 }
 
 void turnFirstFanOn() 

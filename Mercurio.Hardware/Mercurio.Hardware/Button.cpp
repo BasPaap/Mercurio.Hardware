@@ -13,6 +13,11 @@ namespace Bas
 	{
 	}
 
+	void Button::initialize(InputEvent risingEvent)
+	{
+		this->initialize(risingEvent, NULL);
+	}
+
 	void Button::initialize(InputEvent risingEvent, InputEvent fallingEvent)
 	{
 		this->risingEvent = risingEvent;
@@ -37,11 +42,13 @@ namespace Bas
 				// Call the appropriate callback function
 				if (currentButtonState == HIGH)
 				{
+					Serial.println("Button debounced on HIGH.");
 					this->risingEvent();
 				}
 
-				if (currentButtonState == LOW)					
+				if (this->fallingEvent == NULL && currentButtonState == LOW)					
 				{
+					Serial.println("Button debounced on LOW.");
 					this->fallingEvent();
 				}
 			}

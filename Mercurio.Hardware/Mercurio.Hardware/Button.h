@@ -25,6 +25,7 @@ namespace Bas
 		Button(int pin, unsigned long debounceDelay);
 		~Button();
 
+		void initialize(InputEvent risingEvent);
 		void initialize(InputEvent risingEvent, InputEvent fallingEvent);
 		void update();
 		int getState();
