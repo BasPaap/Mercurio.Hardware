@@ -12,21 +12,21 @@ namespace Bas
 {
 	class Button
 	{
-		using InputEvent = void(*)();
+		using CallbackPointer = void(*)();
 		int pin;
 		int lastDebouncedButtonState = HIGH;
 		unsigned long lastDebounceTime;
 		unsigned long debounceDelay;
-		InputEvent risingEvent;
-		InputEvent fallingEvent;
+		CallbackPointer risingCallback;
+		CallbackPointer fallingCallback;
 		int debouncedState;
 
 	public:
 		Button(int pin, unsigned long debounceDelay);
 		~Button();
 
-		void initialize(InputEvent risingEvent);
-		void initialize(InputEvent risingEvent, InputEvent fallingEvent);
+		void initialize(CallbackPointer risingCallback);
+		void initialize(CallbackPointer risingCallback, CallbackPointer fallingCallback);
 		void update();
 		int getState();
 	};

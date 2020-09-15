@@ -5,7 +5,7 @@
 #include "Button.h"
 namespace Bas
 {
-	Button::Button(int pin, unsigned long debounceDelay) : pin{ pin }, debounceDelay{ debounceDelay }
+	Button::Button(int pin, unsigned long debounceDelay) : pin{ pin }, debounceDelay{ debounceDelay }, risingCallback{ NULL }, fallingCallback{ NULL }
 	{
 	}
 
@@ -13,15 +13,15 @@ namespace Bas
 	{
 	}
 
-	void Button::initialize(InputEvent risingEvent)
+	void Button::initialize(CallbackPointer risingEvent)
 	{
 		this->initialize(risingEvent, NULL);
 	}
 
-	void Button::initialize(InputEvent risingEvent, InputEvent fallingEvent)
+	void Button::initialize(CallbackPointer risingEvent, CallbackPointer fallingEvent)
 	{
-		this->risingEvent = risingEvent;
-		this->fallingEvent = fallingEvent;
+		this->risingCallback = risingEvent;
+		this->fallingCallback = fallingEvent;
 		pinMode(this->pin, INPUT_PULLUP);
 	}
 
@@ -43,13 +43,13 @@ namespace Bas
 				if (currentButtonState == HIGH)
 				{
 					Serial.println("Button debounced on HIGH.");
-					this->risingEvent();
+					this->risingCallback();
 				}
 
-				if (this->fallingEvent == NULL && currentButtonState == LOW)					
+				if (this->fallingCallback == NULL && currentButtonState == LOW)
 				{
 					Serial.println("Button debounced on LOW.");
-					this->fallingEvent();
+					this->fallingCallback();
 				}
 			}
 		}
