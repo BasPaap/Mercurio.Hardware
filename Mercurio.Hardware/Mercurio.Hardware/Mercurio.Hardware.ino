@@ -43,9 +43,9 @@ void setup()
 // the loop function runs over and over again until power down or reset
 void loop() 
 {
-	//firstFanButton.update();
-	//secondFanButton.update();
-	//solenoidButton.update();  
+	firstFanButton.update();
+	secondFanButton.update();
+	solenoidButton.update();  
 
 	solenoidKicker.update();
 }
