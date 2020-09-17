@@ -25,8 +25,8 @@ namespace Bas
 		Button(int pin, unsigned long debounceDelay);
 		~Button();
 
-		void initialize(CallbackPointer risingCallback);
-		void initialize(CallbackPointer risingCallback, CallbackPointer fallingCallback);
+		void initialize(CallbackPointer fallingCallback);
+		void initialize(CallbackPointer fallingCallback, CallbackPointer risingCallback);
 		void update();
 		int getState();
 	};

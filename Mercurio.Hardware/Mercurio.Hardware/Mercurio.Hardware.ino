@@ -14,7 +14,7 @@ const int solenoidButtonPin = 4;
 const int firstFanPin = 5;
 const int secondFanPin = 6;
 const int solenoidKickerPin = 7;
-const unsigned long kickDuration = 500;
+const unsigned long kickDuration = 200;
 const unsigned long debounceDelay = 50;
 
 Bas::Button firstFanButton{ firstFanButtonPin, debounceDelay };

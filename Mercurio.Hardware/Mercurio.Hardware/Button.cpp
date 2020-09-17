@@ -13,15 +13,15 @@ namespace Bas
 	{
 	}
 
-	void Button::initialize(CallbackPointer risingEvent)
+	void Button::initialize(CallbackPointer fallingCallback)
 	{
-		this->initialize(risingEvent, NULL);
+		this->initialize(fallingCallback, NULL);
 	}
 
-	void Button::initialize(CallbackPointer risingEvent, CallbackPointer fallingEvent)
+	void Button::initialize(CallbackPointer fallingCallback, CallbackPointer risingCallback)
 	{
-		this->risingCallback = risingEvent;
-		this->fallingCallback = fallingEvent;
+		this->risingCallback = risingCallback;
+		this->fallingCallback = fallingCallback;
 		pinMode(this->pin, INPUT_PULLUP);
 	}
 
@@ -40,13 +40,13 @@ namespace Bas
 				this->debouncedState = currentButtonState;
 
 				// Call the appropriate callback function
-				if (currentButtonState == HIGH)
+				if (this->risingCallback != NULL && currentButtonState == HIGH)
 				{
 					Serial.println("Button debounced on HIGH.");
 					this->risingCallback();
 				}
 
-				if (this->fallingCallback == NULL && currentButtonState == LOW)
+				if (currentButtonState == LOW)
 				{
 					Serial.println("Button debounced on LOW.");
 					this->fallingCallback();
