@@ -7,18 +7,17 @@
 #include "WProgram.h"
 #endif
 
-#define BUFFER_SIZE 10
+#define MAX_COMMAND_SIZE 10
 
 namespace Bas
 {
 	class SerialCommandReader
 	{
-		char readBuffer[BUFFER_SIZE];
-		char lastCommand[BUFFER_SIZE];
+		char readBuffer[MAX_COMMAND_SIZE];
+		char lastCommand[MAX_COMMAND_SIZE];
 		int numCharsInBuffer;
 		void clearBuffer();
-		void clearLastCommand();
-
+		
 	public:
 		SerialCommandReader();
 		~SerialCommandReader();		
@@ -26,6 +25,7 @@ namespace Bas
 		void update();
 		bool isCommandAvailable();
 		void getLastCommand(char* command, int size);
+		void clearLastCommand();
 	};
 }
 

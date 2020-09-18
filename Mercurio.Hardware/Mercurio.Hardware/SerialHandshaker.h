@@ -13,15 +13,15 @@ namespace Bas
 {
 	class SerialHandshaker
 	{		
-		char readyMessage[BUFFER_SIZE];
-		char expectedResponse[BUFFER_SIZE];
-		char confirmationMessage[BUFFER_SIZE];
+		char readyMessage[MAX_COMMAND_SIZE];
+		char expectedResponse[MAX_COMMAND_SIZE];
+		char confirmationMessage[MAX_COMMAND_SIZE];
 		bool isResponseReceived;
 
 		Bas::SerialCommandReader serialCommandReader;
 
 	public:
-		SerialHandshaker(char readyMessage[BUFFER_SIZE], char expectedResponse[BUFFER_SIZE], char confirmationMessage[BUFFER_SIZE]);
+		SerialHandshaker(char readyMessage[MAX_COMMAND_SIZE], char expectedResponse[MAX_COMMAND_SIZE], char confirmationMessage[MAX_COMMAND_SIZE]);
 		~SerialHandshaker();
 
 		void update();

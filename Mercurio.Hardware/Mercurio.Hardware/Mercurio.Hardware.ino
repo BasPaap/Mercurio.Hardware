@@ -8,6 +8,7 @@
 #include "Fan.h"
 #include "SolenoidKicker.h"
 #include "SerialHandshaker.h"
+#include "CommandHandler.h"
 
 const int firstFanButtonPin = 2;
 const int secondFanButtonPin = 3;
@@ -28,6 +29,7 @@ Bas::Fan secondFan{ secondFanPin };
 Bas::SolenoidKicker solenoidKicker{ solenoidKickerPin, kickDuration };
 
 Bas::SerialHandshaker serialHandshaker{ "Beep", "Boop", "OK" };
+Bas::CommandHandler commandHandler;
 
 // the setup function runs once when you press reset or power the board
 void setup() 
@@ -44,6 +46,12 @@ void setup()
 	firstFan.initialize();
 	secondFan.initialize();
 	solenoidKicker.initialize();
+
+	commandHandler.addCallback("FAN1_ON", turnFirstFanOn);
+	commandHandler.addCallback("FAN1_OFF", turnFirstFanOff);
+	commandHandler.addCallback("FAN2_ON", turnSecondFanOn);
+	commandHandler.addCallback("FAN2_OFF", turnSecondFanOff);
+	commandHandler.addCallback("KICK", activateSolenoidKicker);	
 }
 
 // the loop function runs over and over again until power down or reset
@@ -51,7 +59,7 @@ void loop()
 {
 	if (serialHandshaker.isConnected())
 	{
-		
+		commandHandler.update();
 	}
 	else
 	{

@@ -117,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
+    <ClInclude Include="CommandHandler.h" />
     <ClInclude Include="Fan.h" />
     <ClInclude Include="SerialCommandReader.h" />
     <ClInclude Include="SerialHandshaker.h" />
@@ -125,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="CommandHandler.cpp" />
     <ClCompile Include="Fan.cpp" />
     <ClCompile Include="SerialCommandReader.cpp" />
     <ClCompile Include="SerialHandshaker.cpp" />
