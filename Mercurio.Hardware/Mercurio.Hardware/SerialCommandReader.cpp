@@ -27,6 +27,7 @@ void Bas::SerialCommandReader::update()
 			readBuffer[numCharsInBuffer -1] = '\0';
 
 			// complete command found.
+			clearLastCommand();
 			strcpy(lastCommand, readBuffer);
 			clearBuffer();			
 		}
@@ -41,7 +42,7 @@ bool Bas::SerialCommandReader::isCommandAvailable()
 void Bas::SerialCommandReader::getLastCommand(char* command, int size)
 {
 	strncpy(command, lastCommand, size);
-	clearLastCommand();
+	//clearLastCommand();
 }
 
 void Bas::SerialCommandReader::clearBuffer()

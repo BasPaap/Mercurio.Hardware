@@ -24,7 +24,7 @@ void Bas::SerialHandshaker::update()
 		{
 			Serial.println(confirmationMessage);
 			this->isResponseReceived = true;
-		}
+		}		
 	}
 	else
 	{
