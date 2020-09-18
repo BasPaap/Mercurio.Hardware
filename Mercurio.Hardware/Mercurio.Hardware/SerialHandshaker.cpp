@@ -1,12 +1,10 @@
 #include "SerialHandshaker.h"
 
-
-Bas::SerialHandshaker::SerialHandshaker(char readyMessage[BUFFER_SIZE], char expectedResponse[BUFFER_SIZE], char confirmationMessage[BUFFER_SIZE]) : isResponseReceived{ false }, numCharsInBuffer{ 0 }
+Bas::SerialHandshaker::SerialHandshaker(char readyMessage[BUFFER_SIZE], char expectedResponse[BUFFER_SIZE], char confirmationMessage[BUFFER_SIZE]) : isResponseReceived{ false }
 {
 	strcpy(this->readyMessage, readyMessage);
 	strcpy(this->expectedResponse, expectedResponse);
 	strcpy(this->confirmationMessage, confirmationMessage);
-	clearBuffer();
 }
 
 Bas::SerialHandshaker::~SerialHandshaker()
@@ -15,43 +13,22 @@ Bas::SerialHandshaker::~SerialHandshaker()
 
 void Bas::SerialHandshaker::update()
 {	
-	if (Serial.available())
+	this->serialCommandReader.update();
+
+	if (this->serialCommandReader.isCommandAvailable())
 	{
-		if (numCharsInBuffer >= BUFFER_SIZE)
-		{
-			clearBuffer();
-		}
+		char command[BUFFER_SIZE];
+		this->serialCommandReader.getLastCommand(command, BUFFER_SIZE);
 				
-		readBuffer[numCharsInBuffer] = Serial.read();
-		numCharsInBuffer++;
-		
-		if (readBuffer[numCharsInBuffer - 1] == '\n')
+		if (strcmp(expectedResponse, command) == 0)
 		{
-			readBuffer[numCharsInBuffer -1] = '\0';
-			
-			if (strcmp(expectedResponse, readBuffer) == 0)
-			{
-				Serial.println(confirmationMessage);
-				this->isResponseReceived = true;
-			}
-			else
-			{				
-				clearBuffer();
-			}
+			Serial.println(confirmationMessage);
+			this->isResponseReceived = true;
 		}
-	}	
+	}
 	else
 	{
-		Serial.println(readyMessage);
-	}
-}
-
-void Bas::SerialHandshaker::clearBuffer()
-{
-	numCharsInBuffer = 0;
-	for (size_t i = 0; i < BUFFER_SIZE; i++)
-	{
-		readBuffer[i] = '\0';
+		Serial.println(this->readyMessage);
 	}
 }
 
