@@ -39,6 +39,8 @@ void setup()
 		; // wait for serial port to connect. Needed for native USB port only
 	}
 
+	Serial.println("Mercurio hardware controller v1.0");
+
 	firstFanButton.initialize(turnFirstFanOn, turnFirstFanOff);
 	secondFanButton.initialize(turnSecondFanOn, turnSecondFanOff);
 	solenoidButton.initialize(activateSolenoidKicker);
