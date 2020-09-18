@@ -33,6 +33,9 @@
     <ClInclude Include="SolenoidKicker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SerialHandshaker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp">
@@ -42,6 +45,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SolenoidKicker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SerialHandshaker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

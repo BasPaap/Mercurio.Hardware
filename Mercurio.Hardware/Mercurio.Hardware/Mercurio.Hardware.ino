@@ -7,6 +7,7 @@
 #include "Button.h"
 #include "Fan.h"
 #include "SolenoidKicker.h"
+#include "SerialHandshaker.h"
 
 const int firstFanButtonPin = 2;
 const int secondFanButtonPin = 3;
@@ -26,10 +27,15 @@ Bas::Fan secondFan{ secondFanPin };
 
 Bas::SolenoidKicker solenoidKicker{ solenoidKickerPin, kickDuration };
 
+Bas::SerialHandshaker serialHandshaker{ "Beep", "Boop", "OK" };
+
 // the setup function runs once when you press reset or power the board
 void setup() 
 {
 	Serial.begin(9600);
+	while (!Serial) {
+		; // wait for serial port to connect. Needed for native USB port only
+	}
 
 	firstFanButton.initialize(turnFirstFanOn, turnFirstFanOff);
 	secondFanButton.initialize(turnSecondFanOn, turnSecondFanOff);
@@ -43,6 +49,15 @@ void setup()
 // the loop function runs over and over again until power down or reset
 void loop() 
 {
+	if (serialHandshaker.isConnected())
+	{
+		
+	}
+	else
+	{
+		serialHandshaker.update();
+	}
+
 	firstFanButton.update();
 	secondFanButton.update();
 	solenoidButton.update();  
