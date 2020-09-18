@@ -7,10 +7,6 @@ Bas::SerialHandshaker::SerialHandshaker(char readyMessage[MAX_COMMAND_SIZE], cha
 	strcpy(this->confirmationMessage, confirmationMessage);
 }
 
-Bas::SerialHandshaker::~SerialHandshaker()
-{
-}
-
 void Bas::SerialHandshaker::update()
 {	
 	this->serialCommandReader.update();

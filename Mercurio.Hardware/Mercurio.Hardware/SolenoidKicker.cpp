@@ -6,10 +6,6 @@ namespace Bas
 	{
 	}
 
-	SolenoidKicker::~SolenoidKicker()
-	{
-	}
-
 	void SolenoidKicker::initialize()
 	{
 		Serial.print("Initializing solenoid kicker on pin ");

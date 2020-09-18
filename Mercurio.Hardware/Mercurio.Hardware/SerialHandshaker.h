@@ -22,7 +22,6 @@ namespace Bas
 
 	public:
 		SerialHandshaker(char readyMessage[MAX_COMMAND_SIZE], char expectedResponse[MAX_COMMAND_SIZE], char confirmationMessage[MAX_COMMAND_SIZE]);
-		~SerialHandshaker();
 
 		void update();
 		bool isConnected();

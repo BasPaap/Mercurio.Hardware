@@ -23,8 +23,7 @@ namespace Bas
 
 	public:
 		Button(int pin, unsigned long debounceDelay);
-		~Button();
-
+		
 		void initialize(CallbackPointer fallingCallback);
 		void initialize(CallbackPointer fallingCallback, CallbackPointer risingCallback);
 		void update();

@@ -4,10 +4,6 @@ Bas::CommandHandler::CommandHandler() : numCallbacks{ 0 }
 {
 }
 
-Bas::CommandHandler::~CommandHandler() 
-{
-}
-
 void Bas::CommandHandler::addCallback(char* command, CallbackPointer callback)
 {
 	if (this->numCallbacks < maxCallbacks)

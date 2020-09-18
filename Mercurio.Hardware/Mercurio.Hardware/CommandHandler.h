@@ -23,7 +23,6 @@ namespace Bas
 
 	public:
 		CommandHandler();
-		~CommandHandler();
 
 		void addCallback(char* command, CallbackPointer callback);
 		void update();

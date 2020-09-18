@@ -6,10 +6,6 @@ Bas::SerialCommandReader::SerialCommandReader() : numCharsInBuffer{ 0 }
 	clearLastCommand();
 }
 
-Bas::SerialCommandReader::~SerialCommandReader()
-{
-}
-
 void Bas::SerialCommandReader::update()
 {
 	if (Serial.available())

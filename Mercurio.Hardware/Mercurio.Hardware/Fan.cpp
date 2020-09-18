@@ -5,11 +5,7 @@ namespace Bas
 	Fan::Fan(int pin) : pin{ pin }
 	{
 	}
-
-	Fan::~Fan()
-	{
-	}
-
+		
 	void Fan::initialize()
 	{
 		Serial.print("Initializing fan on pin ");

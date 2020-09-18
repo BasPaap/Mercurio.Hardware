@@ -1,15 +1,8 @@
-// 
-// 
-// 
-
 #include "Button.h"
+
 namespace Bas
 {
 	Button::Button(int pin, unsigned long debounceDelay) : pin{ pin }, debounceDelay{ debounceDelay }, risingCallback{ NULL }, fallingCallback{ NULL }
-	{
-	}
-
-	Button::~Button()
 	{
 	}
 

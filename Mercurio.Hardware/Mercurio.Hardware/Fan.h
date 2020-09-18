@@ -16,7 +16,6 @@ namespace Bas
 
 	public:
 		Fan(int pin);
-		~Fan();
 
 		void initialize();
 		void turnOn();

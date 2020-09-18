@@ -18,7 +18,6 @@ namespace Bas
 
 	public:
 		SolenoidKicker(int pin, unsigned long kickDuration);
-		~SolenoidKicker();
 
 		void initialize();
 		void update();

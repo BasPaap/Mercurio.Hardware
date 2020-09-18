@@ -20,7 +20,6 @@ namespace Bas
 		
 	public:
 		SerialCommandReader();
-		~SerialCommandReader();		
 
 		void update();
 		bool isCommandAvailable();
