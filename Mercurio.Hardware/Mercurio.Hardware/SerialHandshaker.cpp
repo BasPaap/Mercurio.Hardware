@@ -28,7 +28,7 @@ void Bas::SerialHandshaker::update()
 	}
 	else
 	{
-		//Serial.println(this->readyMessage);
+		Serial.println(this->readyMessage);
 	}
 }
 
