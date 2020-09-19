@@ -33,9 +33,6 @@
     <ClInclude Include="SolenoidKicker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SerialHandshaker.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SerialCommandReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -51,9 +48,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SolenoidKicker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SerialHandshaker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SerialCommandReader.cpp">

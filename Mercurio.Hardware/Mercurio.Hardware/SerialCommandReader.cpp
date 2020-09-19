@@ -10,7 +10,7 @@ void Bas::SerialCommandReader::update()
 {
 	if (Serial.available())
 	{
-		if (numCharsInBuffer >= MAX_COMMAND_SIZE)
+		if (numCharsInBuffer >= maxCommandSize)
 		{
 			clearBuffer();
 		}
@@ -44,7 +44,7 @@ void Bas::SerialCommandReader::getLastCommand(char* command, int size)
 void Bas::SerialCommandReader::clearBuffer()
 {
 	numCharsInBuffer = 0;
-	for (size_t i = 0; i < MAX_COMMAND_SIZE; i++)
+	for (size_t i = 0; i < maxCommandSize; i++)
 	{
 		readBuffer[i] = '\0';
 	}

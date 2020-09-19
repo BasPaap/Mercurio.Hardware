@@ -7,7 +7,6 @@
 #include "Button.h"
 #include "Fan.h"
 #include "SolenoidKicker.h"
-#include "SerialHandshaker.h"
 #include "CommandHandler.h"
 
 const int firstFanButtonPin = 2;
@@ -19,6 +18,15 @@ const int solenoidKickerPin = 7;
 const unsigned long kickDuration = 200;
 const unsigned long debounceDelay = 50;
 
+constexpr auto handshakeCommand = "MERCURIO";
+constexpr auto handshakeResponse = "MERCURIO_OK";
+
+constexpr auto fan1OnCommand = "FAN1_ON";
+constexpr auto fan1OffCommand = "FAN1_OFF";
+constexpr auto fan2OnCommand = "FAN2_ON";
+constexpr auto fan2OffCommand = "FAN2_OFF";
+constexpr auto kickCommand = "KICK";
+
 Bas::Button firstFanButton{ firstFanButtonPin, debounceDelay };
 Bas::Button secondFanButton{ secondFanButtonPin, debounceDelay };
 Bas::Button solenoidButton{ solenoidButtonPin, debounceDelay };
@@ -28,7 +36,6 @@ Bas::Fan secondFan{ secondFanPin };
 
 Bas::SolenoidKicker solenoidKicker{ solenoidKickerPin, kickDuration };
 
-Bas::SerialHandshaker serialHandshaker{ "Beep", "Boop", "OK" };
 Bas::CommandHandler commandHandler;
 
 // the setup function runs once when you press reset or power the board
@@ -49,30 +56,32 @@ void setup()
 	secondFan.initialize();
 	solenoidKicker.initialize();
 
-	commandHandler.addCallback("FAN1_ON", turnFirstFanOn);
-	commandHandler.addCallback("FAN1_OFF", turnFirstFanOff);
-	commandHandler.addCallback("FAN2_ON", turnSecondFanOn);
-	commandHandler.addCallback("FAN2_OFF", turnSecondFanOff);
-	commandHandler.addCallback("KICK", activateSolenoidKicker);	
+	// Listen for the handshake command. If we receive it, enable all other commands.
+	commandHandler.addCallback(handshakeCommand, enableSerialCommands);	
 }
 
 // the loop function runs over and over again until power down or reset
 void loop() 
 {
-	if (serialHandshaker.isConnected())
-	{
-		commandHandler.update();
-	}
-	else
-	{
-		serialHandshaker.update();
-	}
+	commandHandler.update();
 
 	firstFanButton.update();
 	secondFanButton.update();
 	solenoidButton.update();  
 
 	solenoidKicker.update();
+}
+
+void enableSerialCommands()
+{
+	// We received a request to start sending commands from the host device,
+	// so we'll enable all commands and respond that we are ready to receive them.
+	commandHandler.addCallback(fan1OnCommand, turnFirstFanOn);
+	commandHandler.addCallback(fan1OffCommand, turnFirstFanOff);
+	commandHandler.addCallback(fan2OnCommand, turnSecondFanOn);
+	commandHandler.addCallback(fan2OffCommand, turnSecondFanOff);
+	commandHandler.addCallback(kickCommand, activateSolenoidKicker);
+	Serial.println(handshakeResponse);
 }
 
 void activateSolenoidKicker()

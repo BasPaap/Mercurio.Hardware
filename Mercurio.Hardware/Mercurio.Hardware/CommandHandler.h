@@ -18,13 +18,13 @@ namespace Bas
 
 		static const int maxCallbacks = 10;
 		int numCallbacks;
-		char* commands[maxCallbacks];
+		const char* commands[maxCallbacks];
 		CallbackPointer callbacks[maxCallbacks];
 
 	public:
 		CommandHandler();
 
-		void addCallback(char* command, CallbackPointer callback);
+		void addCallback(const char* command, CallbackPointer callback);
 		void update();
 	};
 }

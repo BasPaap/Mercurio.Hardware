@@ -4,7 +4,7 @@ Bas::CommandHandler::CommandHandler() : numCallbacks{ 0 }
 {
 }
 
-void Bas::CommandHandler::addCallback(char* command, CallbackPointer callback)
+void Bas::CommandHandler::addCallback(const char* command, CallbackPointer callback)
 {
 	if (this->numCallbacks < maxCallbacks)
 	{
@@ -19,8 +19,8 @@ void Bas::CommandHandler::update()
 	this->serialCommandReader.update();
 	if (this->serialCommandReader.isCommandAvailable())
 	{
-		char command[MAX_COMMAND_SIZE];
-		this->serialCommandReader.getLastCommand(command, MAX_COMMAND_SIZE);
+		char command[maxCommandSize];
+		this->serialCommandReader.getLastCommand(command, maxCommandSize);
 
 		for (size_t i = 0; i < this->numCallbacks; i++)
 		{

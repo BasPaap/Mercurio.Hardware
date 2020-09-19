@@ -120,7 +120,6 @@
     <ClInclude Include="CommandHandler.h" />
     <ClInclude Include="Fan.h" />
     <ClInclude Include="SerialCommandReader.h" />
-    <ClInclude Include="SerialHandshaker.h" />
     <ClInclude Include="SolenoidKicker.h" />
     <ClInclude Include="__vm\.Mercurio.Hardware.vsarduino.h" />
   </ItemGroup>
@@ -129,7 +128,6 @@
     <ClCompile Include="CommandHandler.cpp" />
     <ClCompile Include="Fan.cpp" />
     <ClCompile Include="SerialCommandReader.cpp" />
-    <ClCompile Include="SerialHandshaker.cpp" />
     <ClCompile Include="SolenoidKicker.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

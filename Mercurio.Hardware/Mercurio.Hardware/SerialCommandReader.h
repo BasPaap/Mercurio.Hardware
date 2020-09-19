@@ -7,14 +7,14 @@
 #include "WProgram.h"
 #endif
 
-#define MAX_COMMAND_SIZE 10
+constexpr auto maxCommandSize = 10;
 
 namespace Bas
 {
 	class SerialCommandReader
 	{
-		char readBuffer[MAX_COMMAND_SIZE];
-		char lastCommand[MAX_COMMAND_SIZE];
+		char readBuffer[maxCommandSize];
+		char lastCommand[maxCommandSize];
 		int numCharsInBuffer;
 		void clearBuffer();
 		
