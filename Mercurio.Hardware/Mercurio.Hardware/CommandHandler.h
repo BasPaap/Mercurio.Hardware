@@ -11,6 +11,9 @@
 
 namespace Bas
 {
+	/// <summary>
+	/// Class that handles commands that are sent to the arduino via the Serial port.
+	/// </summary>
 	class CommandHandler
 	{
 		using CallbackPointer = void(*)();
@@ -24,7 +27,16 @@ namespace Bas
 	public:
 		CommandHandler();
 
+		/// <summary>
+		/// Adds a callback to be called when a certain command is called.
+		/// </summary>
+		/// <param name="command">The command to respond to.</param>
+		/// <param name="callback">The callback to call.</param>
 		void addCallback(const char* command, CallbackPointer callback);
+
+		/// <summary>
+		/// Updates the CommandHandler state. This method should be called once per loop.
+		/// </summary>
 		void update();
 	};
 }

@@ -47,9 +47,4 @@ namespace Bas
 			}
 		}
 	}
-
-	int Button::getState()
-	{
-		return this->debouncedState;
-	}
 }
